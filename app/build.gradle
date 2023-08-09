@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.fuzecc'
+    namespace 'com.example.paraaqui'
     compileSdk Versions.compileSdk
 
     defaultConfig {
-        applicationId "com.example.fuzecc"
+        applicationId "com.example.paraaqui"
         minSdk Versions.minSdk
         targetSdk Versions.compileSdk
         versionCode AppVersions.versionCode
@@ -43,7 +43,7 @@ dependencies {
     implementation project(':remote')
     implementation project(':splash')
     implementation project(':utils')
-    implementation project(':matches')
+    implementation project(':dashboard')
 
     implementation AndroidLibs.core
     implementation AndroidLibs.material

@@ -35,7 +35,7 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":matches")))
+    implementation(project(mapOf("path" to ":dashboard")))
     implementation(project(mapOf("path" to ":utils")))
     implementation(AndroidLibs.core)
     implementation(AndroidLibs.appcompat)

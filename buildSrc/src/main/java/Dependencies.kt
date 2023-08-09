@@ -29,6 +29,7 @@ object Versions {
     const val androidxJunit = "1.1.5"
     const val espresso = "3.5.1"
     const val dagger = "2.21"
+    const val maps = "17.0.1"
 
 }
 
@@ -47,6 +48,7 @@ object AndroidLibs {
     const val junit = "junit:junit:${Versions.junit}"
     const val androidxJunit = "androidx.test.ext:junit:${Versions.androidxJunit}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val maps = "com.google.android.gms:play-services-maps:${Versions.maps}"
 
 }
 

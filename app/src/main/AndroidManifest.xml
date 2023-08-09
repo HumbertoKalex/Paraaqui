@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name=".App"
@@ -12,18 +14,21 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Fuzecc"
+        android:theme="@style/Theme.Paraaqui"
         tools:targetApi="31">
         <activity
             android:name="com.example.splash.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.Fuzecc.NoActionBar">
+            android:theme="@style/Theme.Paraaqui.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyApI_q2ZdDTictHlFMZ6HeXA1QfJRE7w8A"/>
     </application>
 
 </manifest>

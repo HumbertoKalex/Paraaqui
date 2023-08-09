@@ -12,9 +12,9 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Fuzecc"
+rootProject.name = "Paraaqui"
 include ':app'
 include ':remote'
 include ':utils'
-include ':matches'
+include ':dashboard'
 include ':splash'

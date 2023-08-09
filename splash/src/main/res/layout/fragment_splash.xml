@@ -5,13 +5,16 @@
     android:background="@color/background_app"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/fuzecc_logo"/>
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:fontFamily="sans-serif"
+        android:text="Para Aqui..."/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

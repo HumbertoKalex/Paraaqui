@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_app">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:lineSpacingExtra="2sp"
+            android:text="Para Aqui"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtUser"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:textColor="@color/background_app"
+            android:hint="Usuario"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtSenha"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:hint="Senha"
+            android:textColor="@color/background_app"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/edtUser"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/background_team"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/edtSenha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtForgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Esqueci minha senha"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

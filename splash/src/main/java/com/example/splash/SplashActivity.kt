@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     fun navToMatches() =
-        navController.navigate(R.id.action_splashFragment_to_nav_matches_graph)
+        navController.navigate(R.id.action_splashFragment_to_nav_graph)
 
     override fun onPause() {
         super.onPause()
