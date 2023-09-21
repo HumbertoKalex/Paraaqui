@@ -15,6 +15,9 @@ This project also contains many design patterns useful to daily work, such as Sa
 
 This project its build based on Multi Modular Arch, Clean Arch and FeatureArch
 
-# Test
+## Run
+To run and test just install the project and navigate. The default user and password its user= admin, password= 1234
+
+## Test
 ![image](https://github.com/HumbertoKalex/Paraaqui/assets/34062777/bb0a3dab-8972-46d2-a378-f82d855ed840)
 
