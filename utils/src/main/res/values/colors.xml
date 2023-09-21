@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background_app">#252525</color>
+    <color name="background_style">#001857</color>
     <color name="background_card">#272639</color>
     <color name="red">#F42A35</color>
     <color name="grey">#33FAFAFA</color>
     <color name="white">#FFFFFF</color>
+    <color name="yellow">#F5E554</color>
+    <color name="black">#000000</color>
+    <color name="green">#2A7B2D</color>
 </resources>

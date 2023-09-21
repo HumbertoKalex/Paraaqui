@@ -11,8 +11,8 @@
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
 
-        <action android:id="@+id/action_loginFragment_to_dashboard_fragment"
-            app:destination="@+id/dashboardFragment">
+        <action android:id="@+id/action_loginFragment_to_detalhes_fragment"
+            app:destination="@+id/detalhesFragment">
         </action>
     </fragment>
 
@@ -24,6 +24,20 @@
         <action android:id="@+id/action_dashboardFragment_to_detalhes_fragment"
             app:destination="@+id/detalhesFragment">
         </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkFragment"
+        android:name="com.example.detalhes.view.CheckFragment"
+        android:label="CheckFragment"
+        tools:layout="@layout/fragment_check">
+        <action android:id="@+id/action_checkFragment_to_detalhes_fragment"
+            app:destination="@+id/detalhesFragment">
+        </action>
+        <action android:id="@+id/action_checkFragment_to_dashboard_fragment"
+            app:destination="@+id/dashboardFragment">
+        </action>
     </fragment>
 
     <fragment
@@ -33,6 +47,9 @@
         tools:layout="@layout/fragment_detalhes">
         <action android:id="@+id/action_detalhesFragment_to_dashboard_fragment"
             app:destination="@+id/dashboardFragment">
+        </action>
+        <action android:id="@+id/action_detalhesFragment_to_check_fragment"
+            app:destination="@+id/checkFragment">
         </action>
     </fragment>
 

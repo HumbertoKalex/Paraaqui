@@ -33,7 +33,7 @@ class LoginFragment : BaseFragment() {
     private fun observeActions() {
         viewModel.loginAction.observe(viewLifecycleOwner) {
             when (it) {
-                is LoginAction.LoginSuccess -> findNavController().navigate(R.id.action_loginFragment_to_dashboard_fragment)
+                is LoginAction.LoginSuccess -> findNavController().navigate(R.id.action_loginFragment_to_detalhes_fragment)
 
                 is LoginAction.Error -> showError(it.msg ?: "Generic Error")
             }

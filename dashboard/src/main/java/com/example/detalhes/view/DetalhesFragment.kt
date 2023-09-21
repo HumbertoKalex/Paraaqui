@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.dashboard.R
-import com.example.login.data.models.Login
-import com.example.dashboard.databinding.FragmentDashboardBinding
 import com.example.dashboard.databinding.FragmentDetalhesBinding
 import com.example.detalhes.view.action.DetalhesAction
 import com.example.utils.core.BaseFragment
@@ -35,14 +33,22 @@ class DetalhesFragment : BaseFragment() {
     private fun observeActions() {
         viewModel.detalhesAction.observe(viewLifecycleOwner) {
             when (it) {
-                is DetalhesAction.DetalhesLoaded ->{}
+                is DetalhesAction.DetalhesLoaded -> {}
 
                 is DetalhesAction.Error -> showError(it.msg ?: "Generic Error")
             }
         }
 
-        binding.linearDetalhes.setOnClickListener {
-            findNavController().popBackStack()
+        binding.arrowMaps.setOnClickListener {
+            findNavController().navigate(R.id.action_detalhesFragment_to_dashboard_fragment)
+        }
+
+        binding.arrowCheck.setOnClickListener {
+            findNavController().navigate(R.id.action_detalhesFragment_to_check_fragment)
+        }
+
+        binding.iconEnd.setOnClickListener {
+            findNavController().navigate(R.id.action_detalhesFragment_to_dashboard_fragment)
         }
     }
 
