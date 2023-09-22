@@ -18,6 +18,8 @@ This project its build based on Multi Modular Arch, Clean Arch and FeatureArch
 ## Run
 To run and test just install the project and navigate. The default user and password its user= admin, password= 1234
 
+The apk file its at the root project folder. app-debug.apk
+
 ## Test
 ![image](https://github.com/HumbertoKalex/Paraaqui/assets/34062777/bb0a3dab-8972-46d2-a378-f82d855ed840)
 
