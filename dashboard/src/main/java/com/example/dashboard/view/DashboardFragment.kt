@@ -27,7 +27,7 @@ import java.util.Random
 
 private const val LOCATION_PERMISSION_REQUEST_CODE = 1234
 private var countDownTimer: CountDownTimer? = null
-private const val COUNTDOWN_TIME = 30 * 60 * 1000L
+private const val COUNTDOWN_TIME = 3600000L
 
 class DashboardFragment : BaseFragment(), OnMapReadyCallback {
 
