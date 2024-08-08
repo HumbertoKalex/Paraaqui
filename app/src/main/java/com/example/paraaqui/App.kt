@@ -28,7 +28,7 @@ class App : DaggerApplication(){
         loadKoinModules(
             listOf(
                 createRemoteModule(
-                    mobileUrl = "https://api.pandascore.co/csgo/")
+                    mobileUrl = "https://maps.googleapis.com/maps/api/place/")
             )
         )
     }

@@ -39,17 +39,14 @@ class DetalhesFragment : BaseFragment() {
             }
         }
 
-        binding.arrowMaps.setOnClickListener {
+        binding.cardMaps.setOnClickListener {
             findNavController().navigate(R.id.action_detalhesFragment_to_dashboard_fragment)
         }
 
-        binding.arrowCheck.setOnClickListener {
+        binding.cardCheckin.setOnClickListener {
             findNavController().navigate(R.id.action_detalhesFragment_to_check_fragment)
         }
 
-        binding.iconEnd.setOnClickListener {
-            findNavController().navigate(R.id.action_detalhesFragment_to_dashboard_fragment)
-        }
     }
 
     private fun showError(error: String) =

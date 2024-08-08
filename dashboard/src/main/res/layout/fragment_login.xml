@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_style">
+        android:background="@drawable/bg_onboarding">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image"
@@ -16,50 +16,74 @@
             android:layout_marginBottom="24dp"
             android:src="@drawable/logo_transparent_background"
             android:scaleType="centerInside"
-            app:layout_constraintBottom_toTopOf="@+id/edtUser"
+            app:layout_constraintBottom_toTopOf="@+id/fieldUser"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.20" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edtUser"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:id="@+id/fieldUser"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:drawableStart="@drawable/person"
-            android:drawablePadding="8dp"
-            android:padding="12dp"
-            android:maxLines="1"
-            android:hint="Usuario"
-            android:textColor="@color/background_app"
-            app:layout_constraintBottom_toTopOf="@+id/edtSenha"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/fieldPassword"
+            app:layout_constraintTop_toBottomOf="@+id/image"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edtSenha"
-            android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Usuario"
+                android:textColorHint="@color/white"
+                android:drawableStart="@drawable/person"
+                android:backgroundTint="@color/white"
+                android:drawablePadding="8dp"
+                android:padding="12dp"
+                android:maxLines="1"
+                android:textColor="@color/white"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:id="@+id/fieldPassword"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginBottom="42dp"
             android:layout_marginEnd="32dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:hint="Senha"
-            android:drawableStart="@drawable/lock"
-            android:drawablePadding="8dp"
-            android:padding="12dp"
-            android:maxLines="1"
-            android:textColor="@color/background_app"
-            android:inputType="textPassword"
-            app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+            android:layout_marginBottom="32dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Senha"
+                android:textColorHint="@color/white"
+                android:backgroundTint="@color/white"
+                android:drawableStart="@drawable/lock"
+                android:drawablePadding="8dp"
+                android:padding="12dp"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"

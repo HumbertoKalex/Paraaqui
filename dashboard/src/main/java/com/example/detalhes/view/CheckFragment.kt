@@ -1,5 +1,6 @@
 package com.example.detalhes.view
 
+import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -42,14 +43,24 @@ class CheckFragment : BaseFragment() {
             }
         }
 
-        binding.iconEnd.setOnClickListener {
-            findNavController().navigate(R.id.action_checkFragment_to_dashboard_fragment)
-        }
+        val location = loadLastReservation()
+
+        binding.locationTitle.text = location.first
+        binding.locationAddress.text = location.second
+
+
         binding.iconStart.setOnClickListener {
             findNavController().navigate(R.id.action_checkFragment_to_detalhes_fragment)
         }
 
         setupTimer()
+    }
+
+    private fun loadLastReservation(): Pair<String?, String?> {
+        val sharedPreferences = requireContext().getSharedPreferences("reservations", Context.MODE_PRIVATE)
+        val title = sharedPreferences.getString("last_reservation_title", null)
+        val address = sharedPreferences.getString("last_reservation_address", null)
+        return Pair(title, address)
     }
 
     private fun setupTimer() {

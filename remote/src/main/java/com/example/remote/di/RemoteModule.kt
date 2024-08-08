@@ -31,16 +31,6 @@ fun createRemoteModule(
                 readTimeout(TIMEOUT, TimeUnit.SECONDS)
                 writeTimeout(TIMEOUT, TimeUnit.SECONDS)
             }
-            .addInterceptor { chain ->
-                val request = chain.request()
-                    .newBuilder()
-                    .addHeader(
-                        "Authorization",
-                        "Bearer ${"-ATCA_1Xhp3vLcDNbFXzaO38u9nhrwUjszV7XDRRkwVYpsh5vpk"}"
-                    )
-                    .build()
-                chain.proceed(request)
-            }
             .build()
     }
 

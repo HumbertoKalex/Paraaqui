@@ -9,4 +9,7 @@
     <color name="yellow">#F5E554</color>
     <color name="black">#000000</color>
     <color name="green">#2A7B2D</color>
+    <color name="overlay">#18181B</color>
+    <color name="semi_transparent_black">#40000000</color>
+    <color name="semi_transparent_white">#1AFFFFFF</color>
 </resources>
