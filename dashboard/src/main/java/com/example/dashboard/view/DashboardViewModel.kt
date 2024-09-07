@@ -2,40 +2,35 @@ package com.example.dashboard.view
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.dashboard.R
-import com.example.dashboard.domain.DashboardUseCase
 import com.example.dashboard.view.action.DashboardAction
-import com.example.remote.SafeResponse
-import com.example.remote.safeRequest
-import com.example.detalhes.view.action.DetalhesAction
-import com.google.android.gms.maps.model.LatLng
-import kotlinx.coroutines.launch
+import com.example.firebase.FirebaseHandler
+import com.google.firebase.Timestamp
+import java.util.Date
 
 class DashboardViewModel(
-    private val dashboardUseCase: DashboardUseCase
+    private val firebaseHandler: FirebaseHandler
 ) : ViewModel() {
 
     var dashboardAction = MutableLiveData<DashboardAction>()
 
-    fun fetchDashboard(currentLocation: LatLng) {
-        val location = "${currentLocation.latitude},${currentLocation.longitude}"
-        val radius = 5000  // 5km radius
-        val type = "parking"
-        viewModelScope.launch {
-            when (val response = safeRequest {
-                dashboardUseCase.fetchDashboard(
-                    location = location,
-                    radius = radius,
-                    api = "AIzaSyApI_q2ZdDTictHlFMZ6HeXA1QfJRE7w8A",
-                    type = type
-                )
-            }) {
-                is SafeResponse.Success -> DashboardAction.DashboardLoaded(response.value).run()
-                is SafeResponse.GenericError -> DashboardAction.Error(response.errorBody?.error)
-                    .run()
+    fun fetchEstacionamentos() {
+        firebaseHandler.getEstacionamentos { estacionamentos, error ->
+            if (estacionamentos != null) {
+                DashboardAction.DashboardLoaded(estacionamentos).run()
+            } else {
+                DashboardAction.Error(error?.message ?: "Erro ao buscar estacionamentos").run()
+            }
+        }
+    }
 
-                is SafeResponse.NetworkError -> DashboardAction.Error().run()
+    fun saveReserva(estacionamentoID: String) {
+        val horaAtual = Timestamp.now()
+
+        firebaseHandler.makeReservation(estacionamentoID, horaAtual) { result ->
+            if (result.isSuccessful) {
+                DashboardAction.ReservaSuccess.run()
+            } else {
+                DashboardAction.Error(result.exception?.message ?: "Erro ao salvar reserva").run()
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.example.login.view
+package com.example.login.view.create
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,23 +7,24 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.dashboard.R
+import com.example.dashboard.databinding.FragmentCreateBinding
 import com.example.login.view.action.LoginAction
 import com.example.dashboard.databinding.FragmentLoginBinding
+import com.example.login.view.action.CreateAction
 import com.example.utils.core.BaseFragment
-import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : BaseFragment() {
+class CreateFragment : BaseFragment() {
 
-    private lateinit var binding: FragmentLoginBinding
+    private lateinit var binding: FragmentCreateBinding
 
-    private val viewModel: LoginViewModel by viewModel()
+    private val viewModel: CreateViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = getDataBinding(inflater, container, R.layout.fragment_login)
+        binding = getDataBinding(inflater, container, R.layout.fragment_create)
         return binding.root
     }
 
@@ -33,20 +34,16 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun observeActions() {
-        viewModel.loginAction.observe(viewLifecycleOwner) {
+        viewModel.createAction.observe(viewLifecycleOwner) {
             when (it) {
-                is LoginAction.LoginSuccess -> findNavController().navigate(R.id.action_loginFragment_to_detalhes_fragment)
+                is CreateAction.CreateSuccess -> findNavController().navigate(R.id.action_createFragment_to_plano_fragment)
 
-                is LoginAction.Error -> showError(it.msg ?: "Generic Error")
+                is CreateAction.Error -> showError(it.msg ?: "Generic Error")
             }
         }
 
-        binding.btnLogin.setOnClickListener {
-            viewModel.login(binding.edtUser.text.toString(), binding.edtSenha.text.toString())
-        }
-
-        binding.btnCreate.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_create_fragment)
+        binding.btnCreateContinue.setOnClickListener {
+            viewModel.create(binding.edtEmail.text.toString(), binding.edtSenha.text.toString(), binding.edtNome.text.toString(), binding.edtCpf.text.toString())
         }
     }
 

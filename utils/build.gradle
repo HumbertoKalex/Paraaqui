@@ -40,4 +40,5 @@ dependencies {
     implementation(AndroidLibs.appcompat)
     implementation Libs.gson
     implementation Libs.glide
+    implementation 'com.google.android.material:material:1.12.0'
 }

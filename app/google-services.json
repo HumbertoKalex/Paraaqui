@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "464181621997",
+    "project_id": "paraki-875f4",
+    "storage_bucket": "paraki-875f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464181621997:android:8421a43f6414c7065d48e4",
+        "android_client_info": {
+          "package_name": "com.example.paraaqui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh73wFFJ-WYk3obhyphKSNKw3VE5TjUwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

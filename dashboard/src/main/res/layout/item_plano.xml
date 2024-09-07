@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/surface_container_high"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Plan Type (e.g., "Melhor escolha") -->
+            <TextView
+                android:id="@+id/planType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Melhor escolha"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold" />
+
+            <!-- Plan Name -->
+            <TextView
+                android:id="@+id/planName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plano Ouro"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:textStyle="bold" />
+
+            <!-- Plan Price -->
+            <TextView
+                android:id="@+id/planPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="R$ 85,99 / mês"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <!-- Plan Description -->
+            <TextView
+                android:id="@+id/planDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Para estacionar\nregularmente"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:textColor="@color/text_color_off_white"
+                android:textSize="14sp" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="12dp"
+                />
+
+            <!-- Plan Features -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
+
+                <!-- Feature 1 -->
+                <TextView
+                    android:id="@+id/planFeature1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-> 30 vagas mensais"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/planFeature2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:text="-> Escolha livre entre os estacionamentos"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/planFeature3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:text="-> Atendimento prioritario"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/planFeature4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:text="-> Suporte 24hrs"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Subscribe Button -->
+            <Button
+                android:id="@+id/btnSubscribe"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Assinar esse plano"
+                android:textSize="12sp"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:layout_marginTop="32dp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/background_edit_text"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

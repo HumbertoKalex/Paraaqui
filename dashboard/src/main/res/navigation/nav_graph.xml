@@ -14,6 +14,22 @@
         <action android:id="@+id/action_loginFragment_to_detalhes_fragment"
             app:destination="@+id/detalhesFragment">
         </action>
+
+        <action android:id="@+id/action_loginFragment_to_create_fragment"
+            app:destination="@+id/createFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="com.example.login.view.create.CreateFragment"
+        android:label="CreateFragment"
+        tools:layout="@layout/fragment_create">
+
+        <action android:id="@+id/action_createFragment_to_plano_fragment"
+            app:destination="@+id/planoFragment"
+            app:popUpTo="@id/loginFragment">
+        </action>
     </fragment>
 
     <fragment
@@ -29,14 +45,24 @@
 
     <fragment
         android:id="@+id/checkFragment"
-        android:name="com.example.detalhes.view.CheckFragment"
+        android:name="com.example.detalhes.view.reserva.ReservaFragment"
         android:label="CheckFragment"
-        tools:layout="@layout/fragment_check">
+        tools:layout="@layout/fragment_reserva">
         <action android:id="@+id/action_checkFragment_to_detalhes_fragment"
             app:destination="@+id/detalhesFragment">
         </action>
         <action android:id="@+id/action_checkFragment_to_dashboard_fragment"
             app:destination="@+id/dashboardFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/planoFragment"
+        android:name="com.example.detalhes.plano.view.PlanoFragment"
+        android:label="PlanoFragment"
+        tools:layout="@layout/fragment_plano">
+        <action android:id="@+id/action_planoFragment_to_detalhes_fragment"
+            app:destination="@+id/detalhesFragment">
         </action>
     </fragment>
 

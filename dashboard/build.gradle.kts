@@ -39,6 +39,10 @@ dependencies {
 
     implementation(project(mapOf("path" to ":utils")))
     implementation(project(mapOf("path" to ":remote")))
+    implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-analytics")
     implementation(AndroidLibs.core)
     implementation(AndroidLibs.appcompat)
     implementation(AndroidLibs.material)

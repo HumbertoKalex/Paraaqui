@@ -2,10 +2,12 @@ package com.example.detalhes.di
 
 import com.example.detalhes.domain.DetalhesUseCase
 import com.example.detalhes.domain.DetalhesUseCaseImpl
+import com.example.detalhes.plano.view.PlanoViewModel
 import com.example.detalhes.repository.DetalhesApi
 import com.example.detalhes.repository.DetalhesRepository
 import com.example.detalhes.repository.DetalhesRepositoryImpl
 import com.example.detalhes.view.DetalhesViewModel
+import com.example.detalhes.view.reserva.ReservaViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -16,5 +18,7 @@ val detalhesModule = module {
     factory<DetalhesRepository> { DetalhesRepositoryImpl(get()) }
     factory<DetalhesUseCase> { DetalhesUseCaseImpl(get()) }
 
-    viewModel { DetalhesViewModel(get()) }
+    viewModel { DetalhesViewModel(get(), get()) }
+    viewModel { ReservaViewModel(get()) }
+    viewModel { PlanoViewModel(get(), get()) }
 }

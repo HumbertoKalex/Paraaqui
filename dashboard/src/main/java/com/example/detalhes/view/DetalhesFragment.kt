@@ -33,7 +33,7 @@ class DetalhesFragment : BaseFragment() {
     private fun observeActions() {
         viewModel.detalhesAction.observe(viewLifecycleOwner) {
             when (it) {
-                is DetalhesAction.DetalhesLoaded -> {}
+                is DetalhesAction.UserFetched -> binding.txtTitle.text = "Ola, ${it.user.nome}"
 
                 is DetalhesAction.Error -> showError(it.msg ?: "Generic Error")
             }
@@ -43,7 +43,7 @@ class DetalhesFragment : BaseFragment() {
             findNavController().navigate(R.id.action_detalhesFragment_to_dashboard_fragment)
         }
 
-        binding.cardCheckin.setOnClickListener {
+        binding.cardReservas.setOnClickListener {
             findNavController().navigate(R.id.action_detalhesFragment_to_check_fragment)
         }
 

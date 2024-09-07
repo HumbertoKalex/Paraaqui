@@ -10,6 +10,11 @@
     <color name="black">#000000</color>
     <color name="green">#2A7B2D</color>
     <color name="overlay">#18181B</color>
+    <color name="text_color_off_white">#C6C5D0</color>
+    <color name="text_link">#99A5FF</color>
+    <color name="schemes_primary_container">#334DF6</color>
+    <color name="schemes_surface">#12131C</color>
+    <color name="surface_container_high">#282933</color>
     <color name="semi_transparent_black">#40000000</color>
     <color name="semi_transparent_white">#1AFFFFFF</color>
 </resources>

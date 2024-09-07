@@ -2,7 +2,6 @@ package com.example.dashboard.view
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -10,16 +9,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
 import com.example.dashboard.R
 import com.example.dashboard.data.models.PlacesResponse
+import com.example.dashboard.databinding.DialogBottomCheckInBinding
 import com.example.dashboard.databinding.FragmentDashboardBinding
 import com.example.dashboard.view.action.DashboardAction
 import com.example.utils.core.BaseFragment
-import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -27,14 +24,12 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.tasks.Task
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
+import java.util.Locale
+import java.util.Random
 
 private const val LOCATION_PERMISSION_REQUEST_CODE = 1234
 
@@ -76,8 +71,8 @@ class DashboardFragment : BaseFragment(), OnMapReadyCallback {
             uiSettings.isMyLocationButtonEnabled = true
             getCurrentLocation { currentLocation ->
                 moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
-                observeActions(currentLocation)
-                viewModel.fetchDashboard(currentLocation)
+                observeActions()
+                viewModel.fetchEstacionamentos()
             }
         }
         googleMap?.setOnMarkerClickListener { marker ->
@@ -120,9 +115,14 @@ class DashboardFragment : BaseFragment(), OnMapReadyCallback {
         val random = Random()
 
         for (i in 1..5) {
-            val randomLat = center.latitude + (random.nextDouble() * 0.02) * if (random.nextBoolean()) 1 else -1
-            val randomLng = center.longitude + (random.nextDouble() * 0.02) * if (random.nextBoolean()) 1 else -1
-            googleMap?.addMarker(MarkerOptions().position(LatLng(randomLat, randomLng)).title("Estacionamento ParkCar"))
+            val randomLat =
+                center.latitude + (random.nextDouble() * 0.02) * if (random.nextBoolean()) 1 else -1
+            val randomLng =
+                center.longitude + (random.nextDouble() * 0.02) * if (random.nextBoolean()) 1 else -1
+            googleMap?.addMarker(
+                MarkerOptions().position(LatLng(randomLat, randomLng))
+                    .title("Estacionamento ParkCar")
+            )
         }
     }
 
@@ -134,57 +134,80 @@ class DashboardFragment : BaseFragment(), OnMapReadyCallback {
         )
     }
 
-    private fun observeActions(center: LatLng) {
+    private fun observeActions() {
         viewModel.dashboardAction.observe(viewLifecycleOwner) { action ->
             when (action) {
-                is DashboardAction.DashboardLoaded -> searchNearbyParkingLots(action.placesResponse)
-                is DashboardAction.Error -> addRandomMarkersNearby(center)
-            }
-        }
+                is DashboardAction.DashboardLoaded -> {
+                    action.estacionamentos.forEach { estacionamento ->
+                        val latLng = LatLng(
+                            estacionamento.location?.latitude ?: 0.0,
+                            estacionamento.location?.longitude ?: 0.0
+                        )
+                        val marker = googleMap?.addMarker(
+                            MarkerOptions()
+                                .position(latLng)
+                                .title(estacionamento.nome)
+                        )
+                        marker?.tag = estacionamento.id
+                    }
+                }
 
-        binding.iconStart.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_detalhes_fragment)
+                is DashboardAction.Error -> {
+                    showError(action.msg ?: "Erro ao carregar estacionamentos")
+                }
+
+                is DashboardAction.ReservaSuccess -> {}
+
+            }
         }
     }
 
     private fun showBottomDialog(marker: Marker) {
-        binding.bottomCardView.visibility = View.VISIBLE
-        binding.locationInfoName.text = "Location: ${marker.title}"
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
 
+        // Inflate the view using ViewBinding
+        val binding = DialogBottomCheckInBinding.inflate(layoutInflater)
+
+        // Set location name
+        binding.locationInfoName.text = marker.title
+
+        // Get address from geocoder
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
         val addresses: List<Address>? =
             geocoder.getFromLocation(marker.position.latitude, marker.position.longitude, 1)
         val address: Address? = addresses?.firstOrNull()
-
         binding.locationInfoAddress.text = address?.getAddressLine(0) ?: "No address found"
 
+        // Handle reservation button click
         binding.btnReservation.setOnClickListener {
             handleReservation(marker)
+            bottomSheetDialog.dismiss()
         }
+
+        // Set the binding's root view as the content view of the bottom sheet dialog
+        bottomSheetDialog.setContentView(binding.root)
+        bottomSheetDialog.show()
     }
+
 
     private fun handleReservation(marker: Marker) {
-        val title = marker.title ?: "No title"
-        val geocoder = Geocoder(requireContext(), Locale.getDefault())
-        val addresses: List<Address>? = geocoder.getFromLocation(marker.position.latitude, marker.position.longitude, 1)
-        val address: Address? = addresses?.firstOrNull()
-        val addressLine = address?.getAddressLine(0) ?: "No address found"
+        val estacionamentoId = marker.tag as? String
 
-        saveLastReservation(title, addressLine)
+        if (estacionamentoId != null) {
+            viewModel.saveReserva(estacionamentoId)
 
-        Toast.makeText(
-            requireContext(),
-            "Reserved at: ${marker.position.latitude}, ${marker.position.longitude}",
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-
-    private fun saveLastReservation(title: String, address: String) {
-        val sharedPreferences = requireContext().getSharedPreferences("reservations", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("last_reservation_title", title)
-        editor.putString("last_reservation_address", address)
-        editor.apply()
+            Toast.makeText(
+                requireContext(),
+                "Reserva feita no estacionamento: ${marker.title}",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Erro ao recuperar o ID do estacionamento",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun showError(error: String) =
